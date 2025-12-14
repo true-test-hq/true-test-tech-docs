@@ -1,14 +1,388 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TrueTest Documentation</title>
+    <style>
+        :root {
+            /* Font */
+            --font-regular: Inter, sans-serif;
+            
+            /* Primary */
+            --richard-120: #41b275;
+            --richard-100: #53c487;
+            --richard-10: #eefaf4;
+            --richard-5: #f6fcf9;
+            
+            /* BGW (Black&Grey&White) */
+            --black-100: #232b36;
+            --black-80: #414d5c;
+            --black-60: #7b838e;
+            --black-40: #8d95a0;
+            --black-30: #b9c3cf;
+            --black-20: #d1d5db;
+            --black-10: #e9ebed;
+            --black-3: #f8f9fb;
+            --grey-100: #f8f8f8;
+            --grey-95: rgba(248, 248, 248, 0.95);
+            --white-100: #ffffff;
+            
+            /* Secondary */
+            --denpok-100: #5bd46e;
+            --carla-100: #23a9c6;
+            --gavin-100: #3066be;
+            --donald-100: #cb5ac0;
+            --jack-100: #794de0;
+            --monica-100: #e75555;
+            --erlich-s-100: #34a1f0;
+            --nelson-s-100: #ee7430;
+            --zen-yung-s-100: #f0348e;
+            
+            /* System */
+            --success-100: #9bc527;
+            --warning-100: #f49840;
+            --error-100: #d85938;
+            
+            /* Design System */
+            --border-radius: 6px;
+            --border-radius-lg: 12px;
+            --box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+            --box-shadow-lg: 0px 0px 16px rgba(37, 37, 37, 0.05);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-regular);
+            line-height: 1.6;
+            color: var(--black-100);
+            background-color: var(--black-3);
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        header {
+            background-color: var(--white-100);
+            color: var(--black-100);
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: var(--box-shadow-lg);
+            border-bottom: 1px solid var(--black-10);
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.2px;
+            color: var(--black-100);
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--black-60);
+            margin-bottom: 1.5rem;
+        }
+        
+        .description {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--black-80);
+        }
+        
+        main {
+            padding: 3rem 0;
+        }
+        
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .section {
+            background: var(--white-100);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--box-shadow-lg);
+            transition: var(--transition);
+            border: 1px solid var(--black-10);
+        }
+        
+        .section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--black-10);
+        }
+        
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--richard-10);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--richard-100);
+            font-size: 1.2rem;
+        }
+        
+        h2 {
+            color: var(--black-100);
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 24px;
+        }
+        
+        .section ul {
+            list-style: none;
+        }
+        
+        .section li {
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+        
+        .section li:before {
+            content: "→";
+            margin-right: 0.3em;
+            color: var(--richard-100);
+            font-weight: bold;
+        }
+        
+        a {
+            color: var(--richard-100);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        a:hover {
+            color: var(--carla-100);
+            text-decoration: none;
+        }
+        
+        .external-link:after {
+            padding-left: 0.3em;
+            content: "  ↗";
+            font-size: 0.8em;
+        }
+        
+        .storybook-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 36px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            white-space: normal;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            flex-shrink: 0;
+            background-color: var(--richard-100);
+            border-color: var(--richard-100);
+            color: var(--white-100);
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, border 0.3s;
+            text-decoration: none;
+            padding: 8px 12px;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        .storybook-link:hover {
+            background-color: var(--richard-120);
+            border-color: var(--richard-120);
+            color: var(--white-100);
+            text-decoration: none;
+        }
+        
+        .important-link {
+            font-weight: 600;
+            color: var(--gavin-100);
+        }
+        
+        .important-link:hover {
+            color: var(--gavin-100);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 36px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            white-space: normal;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            flex-shrink: 0;
+            background-color: var(--richard-100);
+            border-color: var(--richard-100);
+            color: var(--white-100);
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, border 0.3s;
+            text-decoration: none;
+            padding: 8px 12px;
+        }
+        
+        .btn:hover {
+            background-color: var(--richard-120);
+            border-color: var(--richard-120);
+            color: var(--white-100);
+            text-decoration: none;
+        }
+        
+        .btn-secondary {
+            background-color: var(--black-3);
+            color: var(--black-100);
+            border-color: transparent;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--richard-5);
+            color: var(--richard-100);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--black-60);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--black-10);
+            margin-top: 2rem;
+            background-color: var(--white-100);
+        }
+        
+        @media (max-width: 768px) {
+            .sections {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .header-content {
+                padding: 0 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <ul>
-        <li><a href="./frontend">Frontend</a></li>
-        <li><a href="./backend">Backend</a></li>
-    </ul>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <svg viewBox="0 0 24 24" style="width: 40px; height: 40px; margin-bottom: 1rem;">
+                    <path d="M14.763 15.0021C14.763 15.0021 14.8107 13.7991 14.2903 13.7991C13.77 13.7991 13.582 14.0765 13.582 14.0765C13.582 14.0765 13.3927 14.4926 13.7237 14.8167C14.0533 15.1408 14.763 15.0021 14.763 15.0021Z" fill="var(--richard-100)"/>
+                    <path d="M16.483 5.21618C11.8355 1.41371 7.10236 2.03817 7.10236 2.03817C7.10236 2.03817 8.60356 2.71982 7.99757 5.30195C7.39158 7.88407 4.05864 9.88537 4.00049 15.1926C3.9607 18.9123 6.37242 20.9166 7.82006 21.7833C7.59664 21.0294 7.43749 20.2545 7.39617 19.4675C7.27681 17.2044 8.2164 14.8209 9.72066 13.1206C9.97316 12.8347 10.2486 12.5608 10.4246 12.2237C10.6909 11.7151 10.6985 11.1343 10.8102 10.5851C10.9158 10.0614 11.127 9.55734 11.407 9.1014C11.9243 8.26327 12.2165 10.6934 12.4721 11.0004C12.7032 11.2788 13.2633 11.3389 13.5326 11.1915C13.9886 10.9432 14.0513 9.52574 14.3421 9.74844C14.7981 10.096 14.8961 10.8935 15.1455 11.4082C15.3414 11.8129 15.8249 12.1816 16.1203 12.5277C16.4615 12.9264 16.7875 13.3387 17.0798 13.7751C17.4883 14.386 17.8296 15.0466 18.0347 15.7508C18.0698 15.8697 18.2198 17.2962 18.2168 17.2962C18.2168 17.2962 17.3567 16.9983 17.1027 17.1472C16.8502 17.2962 17.7102 18.0425 17.7102 18.0425C17.7102 18.0425 17.6597 18.7392 16.0912 18.8882C15.9489 18.9018 16.6146 20.7135 16.6788 20.9C16.7706 21.1664 16.8977 21.6012 16.9022 22C20.5933 20.1582 20.9483 15.8953 20.9866 15.0918C21.0432 13.9 21.1289 9.01864 16.483 5.21618Z" fill="var(--richard-100)"/>
+                </svg>
+                <h1>TrueTest Documentation</h1>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="sections">
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-icon">📱</div>
+                        <h2>Frontend Documentation</h2>
+                    </div>
+                    <ul>
+                        <li><a href="./frontend">Frontend Overview</a></li>
+                        <li><a href="./frontend/DEVELOPER_README.html">Developer Guide</a></li>
+                        <li><a href="./frontend/src/app">Application Entry Point</a></li>
+                        <li><a href="./frontend/src/pages">Pages Documentation</a></li>
+                        <li><a href="./frontend/src/widgets">Widgets Documentation</a></li>
+                        <li><a href="./frontend/architecture">Frontend Architecture</a></li>
+                        <li><a href="./frontend/materials-editor-documentation">Materials Editor Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-icon">⚙️</div>
+                        <h2>Backend Documentation</h2>
+                    </div>
+                    <ul>
+                        <li><a href="./backend">Backend Overview</a></li>
+                        <li><a href="./backend/src/modules/account">Account Module</a></li>
+                        <li><a href="./backend/src/modules/assignments">Assignments Module</a></li>
+                        <li><a href="./backend/src/modules/customer">Customer Module</a></li>
+                        <li><a href="./backend/src/modules/events">Events Module</a></li>
+                        <li><a href="./backend/src/modules/export">Export Module</a></li>
+                        <li><a href="./backend/src/modules/folders">Folders Module</a></li>
+                        <li><a href="./backend/src/modules/groups">Groups Module</a></li>
+                        <li><a href="./backend/src/modules/health-check">Health Check Module</a></li>
+                        <li><a href="./backend/src/modules/invites">Invites Module</a></li>
+                        <li><a href="./backend/src/modules/materials">Materials Module</a></li>
+                        <li><a href="./backend/src/modules/resources">Resources Module</a></li>
+                        <li><a href="./backend/src/modules/smtp">SMTP Module</a></li>
+                        <li><a href="./backend/src/modules/solver">Solver Module</a></li>
+                        <li><a href="./backend/src/modules/solver/model/domain/locators">Solver Locators</a></li>
+                        <li><a href="./backend/src/modules/solver/model/domain/solvers">Solver Solvers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-icon">🔗</div>
+                        <h2>Development Resources</h2>
+                    </div>
+                    <ul>
+                        <li><a href="https://app.truetest.app" class="btn important-link" target="_blank">Production Environment</a></li>
+                        <li><a href="https://test-backend.true-test.ru/api" class="btn btn-secondary external-link" target="_blank">Test Backend Swagger</a></li>
+                        <li><a href="https://tt-master.surge.sh" class="btn btn-secondary external-link" target="_blank">Storybook</a></li>
+                        <li><a href="https://www.figma.com/file/raHLFRhigz2Nk7yvv4IjUL" class="btn btn-secondary external-link" target="_blank">Main Figma Design</a></li>
+                        <li><a href="https://www.figma.com/file/GebEZXGeMLWWV4hKEhDuDi/TT.-UI-KIT" class="btn btn-secondary external-link" target="_blank">Figma UI-KIT</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2022-2025 TrueTest. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
